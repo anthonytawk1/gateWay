@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
-const controller = require("../controllers/gatewayController.js");
+const controller = require("../controllers/audit.controller.js");
 
 async function handleRequestAndAuditTrail(req, res, requestHandler) {
   try {

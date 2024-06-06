@@ -16,7 +16,8 @@ app.use(async (req, res, next) => {
   if (
     req.path.startsWith("/video") ||
     req.path.startsWith("/comment") ||
-    req.path.startsWith("/reply")
+    req.path.startsWith("/reply") 
+    
   ) {
     try {
       const authorizationHeader = req.headers.authorization;

@@ -106,4 +106,35 @@ router.post("/reply/:id", async (req, res) => {
   );
 });
 
+router.post("/payment/initiate", async (req, res) => {
+  await handleRequestAndAuditTrail(req, res, () =>
+    axios.post(`http://${process.env.HOST}:${process.env.PAYMENT_PROVIDER_PORT}/payment/initiate`, req.body)
+  );
+});
+
+router.post("/payment/execute", async (req, res) => {
+  const config = {
+    headers: {
+      'User-Data': JSON.stringify(req.user)
+    }
+  };
+  await handleRequestAndAuditTrail(req, res, () =>
+    axios.post(`http://${process.env.HOST}:${process.env.PAYMENT_PROVIDER_PORT}/payment/execute`, req.body, config)
+  );
+});
+
+router.post("/payment/status", async (req, res) => {
+  const config = {
+    headers: {
+      'User-Data': JSON.stringify(req.user)
+    }
+  };
+  await handleRequestAndAuditTrail(req, res, () =>
+    axios.post(`http://${process.env.HOST}:${process.env.PAYMENT_PROVIDER_PORT}/payment/status`, req.body, config)
+  );
+});
+
+
+
+
 module.exports = router;
